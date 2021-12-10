@@ -1,0 +1,56 @@
+﻿@model StudentViewModel 
+@{
+    ViewData["Title"] = "List of Students";
+}
+
+<h2>
+    List of Students
+</h2>
+<hr />
+<div class="row">
+    <div class="col-sm offset-9" style="width:auto;">
+        <a class="btn btn-success text-white mb-3" asp-action="create">
+            Create new record
+        </a>
+    </div>
+</div>
+<div class="card-deck">
+    <div class="card">
+        <div class="card-header">
+
+        </div>
+        <div class="card-body">
+            @if (Model.ListOfStudents.Any())
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>FullName</th>
+                            @*<th>Course</th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                    </tbody>
+                </table>
+
+            }
+            else
+            {
+                <text>No record yet to be display</text>
+            }
+
+
+        </div>
+        <div class="card-footer">
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+

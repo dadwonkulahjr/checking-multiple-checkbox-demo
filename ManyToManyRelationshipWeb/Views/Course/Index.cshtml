@@ -1,0 +1,77 @@
+﻿@model List<Course>
+@{
+    ViewData["Title"] = "List of courses";
+}
+
+<h2>
+    List of courses
+</h2>
+<hr />
+<div class="row">
+    <div class="col-sm offset-9" style="width:auto;">
+        <a class="btn btn-success text-white mb-3" asp-action="create">
+            Create new record
+        </a>
+    </div>
+</div>
+<div class="card-deck">
+    <div class="card">
+        <div class="card-header">
+
+        </div>
+        <div class="card-body">
+            @if (Model.Any())
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Course Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Model[i].CourseName
+                                </td>
+                                <td>
+                                    @Model[i].CourseNumber
+                                </td>
+                                <td>
+                                    <a asp-route-id="@Model[i].Id" class="btn btn-outline-success" asp-action="Create">
+                                        Edit
+                                    </a>
+                                    <form  method="post">
+                                        <button type="submit" asp-route-id="@Model[i].Id" class="btn btn-outline-danger"
+                                        asp-controller="Course" asp-action="Delete">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            }
+            else
+            {
+                <text>No record yet to be display</text>
+            }
+
+
+        </div>
+        <div class="card-footer">
+
+        </div>
+    </div>
+
+
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

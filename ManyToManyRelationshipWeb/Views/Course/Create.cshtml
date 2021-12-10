@@ -1,0 +1,46 @@
+﻿@model CourseViewModel
+@{
+    ViewData["Title"] = "Create new course";
+}
+
+<h2>
+    Create new Course
+</h2>
+<hr />
+
+<form method="post">
+    @if (Model.Id != 0)
+    {
+        <input asp-for="Id" hidden="hidden" />
+    }
+    <div class="border shadow" style="padding:30px;margin:10px;">
+        <div class="row">
+            <div class="col-3">
+                <label asp-for="CourseName" class="col-form-label"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="CourseName" class="form-control" placeholder="Course name..." />
+                <span class="text-danger" asp-validation-for="CourseName"></span>
+            </div>
+
+            <div class="col-3 mt-3">
+                <label asp-for="CourseNumber" class="col-form-label"></label>
+            </div>
+            <div class="col-8 mt-3">
+                <input asp-for="CourseNumber" class="form-control" placeholder="Course number..." />
+                <span class="text-danger" asp-validation-for="CourseNumber"></span>
+            </div>
+
+            <div class="col-sm offset-3 mt-3">
+                <button class="btn btn-outline-success">
+                    Submit
+                </button>
+                <a class="btn btn-outline-secondary" asp-action="index" asp-controller="course">
+                    Cancel
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+</form>

@@ -1,0 +1,67 @@
+﻿@model StudentCourseViewModel
+@{
+    ViewData["Title"] = "Create new course";
+}
+
+<h2>
+    Add new record
+</h2>
+<hr />
+
+<form method="post">
+    @if (Model.Id != 0)
+    {
+        <input asp-for="Id" hidden="hidden" />
+    }
+    <div class="border shadow" style="padding:30px;margin:10px;">
+        <div class="row">
+            <div class="col-3">
+                <label asp-for="FirstName" class="col-form-label"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="FirstName" class="form-control" placeholder="First name..." />
+                <span class="text-danger" asp-validation-for="FirstName"></span>
+            </div>
+
+            <div class="col-3 mt-3">
+                <label asp-for="LastName" class="col-form-label"></label>
+            </div>
+            <div class="col-8 mt-3">
+                <input asp-for="LastName" class="form-control" placeholder="Last name..." />
+                <span class="text-danger" asp-validation-for="LastName"></span>
+            </div>
+            <div class="col-3 mt-3">
+                <label>Course</label>
+            </div>
+            <div class="col-8 mt-3">
+                @for (int i = 0; i < Model.AvailableCourses.Count; i++)
+                {
+                    <input asp-for="@Model.AvailableCourses[i].Id" hidden="hidden" />
+                    <div class="form-check m-1">
+                        <input asp-for="@Model.AvailableCourses[i].IsChecked" type="checkbox" class="form-check-input" />
+                        @*&nbsp;<i class="far fa-edit"></i>*@
+                        <h6>
+                            <label class="form-check-label" asp-for="@Model.AvailableCourses[i].IsChecked">
+                                @Model.AvailableCourses[i].Title
+                            </label>
+                        </h6>
+                    </div>
+                }
+
+
+            </div>
+
+
+            <div class="col-sm offset-3 mt-3">
+                <button class="btn btn-outline-success">
+                    Submit
+                </button>
+                <a class="btn btn-outline-secondary" asp-action="index" asp-controller="course">
+                    Cancel
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+</form>
